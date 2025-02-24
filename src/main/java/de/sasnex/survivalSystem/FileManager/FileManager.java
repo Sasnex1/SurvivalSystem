@@ -125,4 +125,15 @@ public class FileManager {
         }
         return false;
     }
+
+    public boolean warpExists(String warpname) {
+        return getWarpsCFG().contains(warpname+".worldname");
+    }
+
+    public void deleteWarp(String warpName) {
+        if (getWarpsCFG().contains(warpName)) {
+            getWarpsCFG().set(warpName, null);  // Entfernt den Eintrag aus der Konfiguration
+            saveWarpCFG();  // Speichert die Änderungen in der Datei
+        }
+    }
 }
