@@ -10,3 +10,9 @@ commands:
     description: Teleportiert dich zu einem Warp
   home:
     description: Teleportiert dich zu deinem Home du kannst es Löschen,Setzen
+  invsee:
+    description: Öffnet dem anderen Spieler das Inventar
+  fly:
+    description: Setzt den Spieler in den Flugmodus oder einen anderen Spieler
+  gm:
+    description: Ändert den Gamemode eines Spieler's

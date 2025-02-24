@@ -3,6 +3,7 @@ package de.sasnex.survivalSystem;
 import de.sasnex.survivalSystem.Commands.*;
 import de.sasnex.survivalSystem.FileManager.FileManager;
 import de.sasnex.survivalSystem.Listeners.JoinListener;
+import de.sasnex.survivalSystem.Listeners.QuitListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,10 +34,14 @@ public final class SurvivalSystem extends JavaPlugin {
         new SpawnCMD();
         new WarpCMD();
         new HomeCMD();
+        new InvseeCMD();
+        new FlyCMD();
+        new GamemodeCmd();
     }
 
     void listener(){
-        new JoinListener();
+        getServer().getPluginManager().registerEvents(new JoinListener(), instance);
+        getServer().getPluginManager().registerEvents(new QuitListener(), instance);
     }
 
     @Override

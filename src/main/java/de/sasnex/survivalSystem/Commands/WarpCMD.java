@@ -96,7 +96,7 @@ public class WarpCMD implements ICommand, CommandExecutor {
                     World world = Bukkit.getWorld(worldname);
                     Location loc = new Location(world, x, y, z, (float) yaw, (float) pitch);
 
-                    player.sendActionBar(SurvivalSystem.translateChat(SurvivalSystem.getPrefix() + "&aTeleportiere zu Warp: &6" + warpname));
+                    player.sendActionBar(SurvivalSystem.translateChat(SurvivalSystem.getPrefix()+"&aDu wirst in 3 Sekunden Teleportiert"));
 
                     new BukkitRunnable() {
                         @Override

@@ -105,7 +105,7 @@ public class HomeCMD implements ICommand, CommandExecutor {
                     World world = Bukkit.getWorld(worldname);
                     Location loc = new Location(world, x, y, z, (float) yaw, (float) pitch);
 
-                    player.sendActionBar(SurvivalSystem.translateChat(SurvivalSystem.getPrefix() + "&aTeleportiere zu Home: &6" + homename));
+                    player.sendActionBar(SurvivalSystem.translateChat(SurvivalSystem.getPrefix()+"&aDu wirst in 3 Sekunden Teleportiert"));
 
                     new BukkitRunnable() {
                         @Override
