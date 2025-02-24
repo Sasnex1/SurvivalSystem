@@ -13,7 +13,7 @@ public class FileManager {
     public File path = new File("plugins/SurvivalSystem");
 
     public File spawnFile = new File(path+"/spawn.yml");
-    public File warpsFile = new File(path + "/warps.yml");
+    public File warpsFile = new File(path + "/warp.yml");
 
     public YamlConfiguration spawnCFG = YamlConfiguration.loadConfiguration(spawnFile);
     public YamlConfiguration warpsCFG = YamlConfiguration.loadConfiguration(warpsFile);
