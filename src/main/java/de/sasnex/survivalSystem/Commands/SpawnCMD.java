@@ -4,6 +4,7 @@ import de.sasnex.survivalSystem.Interfaces.ICommand;
 import de.sasnex.survivalSystem.SurvivalSystem;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -50,6 +51,7 @@ public class SpawnCMD implements ICommand, CommandExecutor {
                         @Override
                         public void run() {
                             player.teleport(loc);
+                            player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT,1.0f,1.0f);
                             player.sendActionBar(SurvivalSystem.translateChat(SurvivalSystem.getPrefix() + "&aDu wurdest Teleportiert"));
                         }
                     }.runTaskLater(SurvivalSystem.getInstance(), 3*20L);
