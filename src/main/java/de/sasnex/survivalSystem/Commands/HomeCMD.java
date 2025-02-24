@@ -80,7 +80,7 @@ public class HomeCMD implements ICommand, CommandExecutor {
             } else if (args.length >= 2 && args[0].equalsIgnoreCase("list")){
                 if(fm.getHomesCFG().contains(player.getName()+".homes")){
                     Set<String> homes = Objects.requireNonNull(
-                            fm.getHomesCFG().getConfigurationSection(player.getName()+".home")
+                            fm.getHomesCFG().getConfigurationSection(player.getName()+".homes")
                     ).getKeys(false);
                     if(!homes.isEmpty()){
                         StringBuilder homesList = new StringBuilder(SurvivalSystem.translateChat(
