@@ -9,6 +9,6 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 public interface ICommand {
     //Kits kits = new Kits();
     //GUIS gui = new GUIS();
-    FileManager filemanager = new FileManager();
+    FileManager fm = new FileManager();
     boolean onCommand(@NonNull CommandSender sender,@NonNull Command cmd,@NonNull String s,@NonNull String[] args);
 }

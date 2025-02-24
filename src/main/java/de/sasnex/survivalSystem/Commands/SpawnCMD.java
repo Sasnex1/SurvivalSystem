@@ -29,12 +29,12 @@ public class SpawnCMD implements ICommand, CommandExecutor {
                 //Spawnt den Spieler am Spawn Logischerweise
                 Location loc = player.getLocation();
 
-                double x = filemanager.getSpawnCFG().getDouble("spawn.x");
-                double y = filemanager.getSpawnCFG().getDouble("spawn.y");;
-                double z = filemanager.getSpawnCFG().getDouble("spawn.z");;
-                double yaw = filemanager.getSpawnCFG().getDouble("spawn.yaw");;
-                double pitch = filemanager.getSpawnCFG().getDouble("spawn.pitch");;
-                String worldname = filemanager.getSpawnCFG().getString("spawn.worldname");
+                double x = fm.getSpawnCFG().getDouble("spawn.x");
+                double y = fm.getSpawnCFG().getDouble("spawn.y");;
+                double z = fm.getSpawnCFG().getDouble("spawn.z");;
+                double yaw = fm.getSpawnCFG().getDouble("spawn.yaw");;
+                double pitch = fm.getSpawnCFG().getDouble("spawn.pitch");;
+                String worldname = fm.getSpawnCFG().getString("spawn.worldname");
 
                 if(worldname != null) {
                     World world = Bukkit.getWorld(worldname);
@@ -59,7 +59,7 @@ public class SpawnCMD implements ICommand, CommandExecutor {
                 }
                 player.sendMessage(SurvivalSystem.translateChat(SurvivalSystem.getPrefix()+"&cDu wirst zum Spawn Teleportiert"));
             } else if(args[0].equalsIgnoreCase("set")){
-                if(player.hasPermission("ss.set")){
+                if(player.hasPermission("ss.spawnset")){
                     //Setzt die Spawn Location
                     Location loc = player.getLocation();
 
@@ -70,12 +70,12 @@ public class SpawnCMD implements ICommand, CommandExecutor {
                     double pitch = loc.getPitch();
                     String worldname = Objects.requireNonNull(loc.getWorld()).getName();
 
-                    filemanager.setSpawnData("spawn.worldname", worldname);
-                    filemanager.setSpawnData("spawn.x", x);
-                    filemanager.setSpawnData("spawn.y", y);
-                    filemanager.setSpawnData("spawn.z", z);
-                    filemanager.setSpawnData("spawn.yaw", yaw);
-                    filemanager.setSpawnData("spawn.pitch", pitch);
+                    fm.setSpawnData("spawn.worldname", worldname);
+                    fm.setSpawnData("spawn.x", x);
+                    fm.setSpawnData("spawn.y", y);
+                    fm.setSpawnData("spawn.z", z);
+                    fm.setSpawnData("spawn.yaw", yaw);
+                    fm.setSpawnData("spawn.pitch", pitch);
                     player.sendMessage(SurvivalSystem.translateChat(SurvivalSystem.getPrefix() + "&6Spawn wurde gesetzt"));
                     return true;
                 } else {
