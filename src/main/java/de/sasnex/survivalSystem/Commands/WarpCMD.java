@@ -60,6 +60,7 @@ public class WarpCMD implements ICommand, CommandExecutor { ;
                 }
                 return true;
             } else if (args[0].equalsIgnoreCase("set")) {
+                //Setzt den Warp
                 if (player.hasPermission("ss.setwarp")) {
                     if (args.length >= 2) {
                         String warpname = args[1];
@@ -83,6 +84,7 @@ public class WarpCMD implements ICommand, CommandExecutor { ;
                     return true;
                 }
             } else if (args[0].equalsIgnoreCase("delete")) {
+                //Löscht den Warp
                 if (player.hasPermission("ss.deletewarp")) {
                     if (args.length >= 2) {
                         String warpname = args[1];
