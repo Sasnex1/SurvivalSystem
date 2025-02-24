@@ -84,7 +84,7 @@ public class WarpCMD implements ICommand, CommandExecutor { ;
                     return true;
                 }
             } else if (args[0].equalsIgnoreCase("delete")) {
-                //Löscht den Warp
+                //Löscht den Warp | /warp delete <warpname>
                 if (player.hasPermission("ss.deletewarp")) {
                     if (args.length >= 2) {
                         String warpname = args[1];

@@ -6,5 +6,7 @@ api-version: '1.20'
 commands:
   spawn:
     description: Teleportiert dich zum Spawn und setzt den Spawn!
+    usage: /spawn | Für Admins /spawn set <spawnname>
   warp:
     description: Teleportiert dich zu deinem Warp oder du setzt dir einen!
+    usage: /warp <warpname | /warp set <warpname> /warp delete <warpname>
