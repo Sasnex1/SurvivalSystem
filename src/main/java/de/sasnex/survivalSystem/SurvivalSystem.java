@@ -1,12 +1,13 @@
 package de.sasnex.survivalSystem;
 
+import de.sasnex.survivalSystem.Commands.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SurvivalSystem extends JavaPlugin {
 
-    SurvivalSystem instance;
+    static SurvivalSystem instance;
 
     @Override
     public void onEnable() {
@@ -14,10 +15,13 @@ public final class SurvivalSystem extends JavaPlugin {
         instance = this;
         sendConsoleMsg("&6SurvivalSystem &aAktiviert");
         sendConsoleMsg("&eMade by Sasnex");
+
+        listener();
+        commands();
     }
 
     void commands(){
-
+        new SpawnCMD();
     }
 
     void listener(){
@@ -28,6 +32,10 @@ public final class SurvivalSystem extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         sendConsoleMsg("&6SurvivalSystem &cDeaktiviert");
+    }
+
+    public static SurvivalSystem getInstance() {
+        return instance;
     }
 
     public static String getPrefix() {return "&8» &a&lBreezy&f&lMC &8• ";}
