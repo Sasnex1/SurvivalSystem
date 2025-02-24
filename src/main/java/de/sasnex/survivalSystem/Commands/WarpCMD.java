@@ -36,7 +36,7 @@ public class WarpCMD implements ICommand, CommandExecutor {
                     for (String warp : fm.getWarpsCFG().getKeys(false)) {
                         warpsList.append(" &6- &f").append(warp).append("\n");
                     }
-                    player.sendMessage(warpsList.toString());
+                    player.sendMessage(SurvivalSystem.translateChat(warpsList.toString()));
                 }
                 return true;
             }
