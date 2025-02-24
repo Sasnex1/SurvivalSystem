@@ -54,7 +54,7 @@ public class FileManager {
 
     public boolean checkSpawnFileExists(){
         if(!spawnFile.exists()){
-            SurvivalSystem.getInstance().saveResource("packs.yml", false);
+            SurvivalSystem.getInstance().saveResource("spawn.yml", false);
             new BukkitRunnable() {
                 @Override
                 public void run() {

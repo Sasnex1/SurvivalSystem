@@ -1,6 +1,7 @@
 package de.sasnex.survivalSystem;
 
 import de.sasnex.survivalSystem.Commands.*;
+import de.sasnex.survivalSystem.FileManager.FileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -8,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class SurvivalSystem extends JavaPlugin {
 
     static SurvivalSystem instance;
+    FileManager fileManager = new FileManager();
 
     @Override
     public void onEnable() {
@@ -15,6 +17,10 @@ public final class SurvivalSystem extends JavaPlugin {
         instance = this;
         sendConsoleMsg("&6SurvivalSystem &aAktiviert");
         sendConsoleMsg("&eMade by Sasnex");
+
+        fileManager.createFolder();
+
+        fileManager.checkSpawnFileExists();
 
         listener();
         commands();
@@ -42,5 +48,9 @@ public final class SurvivalSystem extends JavaPlugin {
     public static String translateChat(String msg){return ChatColor.translateAlternateColorCodes('&', msg);}
     public static void sendConsoleMsg(String msg){
         Bukkit.getConsoleSender().sendMessage(translateChat(getPrefix()+msg));
+    }
+
+    public static String noPerms(){
+        return "&cDafür hast du keine Rechte!";
     }
 }
