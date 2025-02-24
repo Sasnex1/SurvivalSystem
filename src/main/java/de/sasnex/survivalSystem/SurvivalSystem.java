@@ -22,6 +22,7 @@ public final class SurvivalSystem extends JavaPlugin {
 
         fileManager.checkSpawnFileExists();
         fileManager.checkWarpFileExists();
+        fileManager.checkHomeFileExists();
 
         listener();
         commands();
@@ -30,6 +31,7 @@ public final class SurvivalSystem extends JavaPlugin {
     void commands(){
         new SpawnCMD();
         new WarpCMD();
+        new HomeCMD();
     }
 
     void listener(){

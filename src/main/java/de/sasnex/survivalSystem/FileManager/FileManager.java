@@ -14,12 +14,15 @@ public class FileManager {
 
     public File spawnFile = new File(path+"/spawn.yml");
     public File warpsFile = new File(path + "/warp.yml");
+    public File homesFile = new File(path + "/home.yml");
 
     public YamlConfiguration spawnCFG = YamlConfiguration.loadConfiguration(spawnFile);
     public YamlConfiguration warpsCFG = YamlConfiguration.loadConfiguration(warpsFile);
+    public YamlConfiguration homesCFG = YamlConfiguration.loadConfiguration(homesFile);
 
     public YamlConfiguration getSpawnCFG() {loadSpawnCFG(); return spawnCFG; }
     public YamlConfiguration getWarpsCFG() {loadWarpCFG(); return warpsCFG;}
+    public YamlConfiguration getHomesCFG() {loadHomeCFG(); return homesCFG;}
 
 
     public void createFolder(){
@@ -49,6 +52,18 @@ public class FileManager {
             throw new RuntimeException(e);
         }
     }
+
+    public void setHomesData(String path, Object value){
+        try{
+            loadHomeCFG();
+            homesCFG.set(path,value);
+            saveHomeCFG();
+        } catch (Exception e){
+            SurvivalSystem.sendConsoleMsg("&cDatei &5home.yml &cDaten können nicht gesetzt werden\n Grund: &4" + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
     //Lädt die Spawncfg datei
     public void loadSpawnCFG(){
         try{
@@ -68,6 +83,17 @@ public class FileManager {
         }
     }
 
+    //Lädt HomeCFG Datei
+    public void loadHomeCFG(){
+        try{
+            homesCFG.load(homesFile);
+        } catch (IOException | InvalidConfigurationException e){
+            SurvivalSystem.sendConsoleMsg("&cDatei &5home.yml &ckonnte nicht geladen werden \n Grund: &4" + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    //Speichert, die Daten die gesetzt wurden
     public void saveSpawnCFG(){
         try {
             spawnCFG.save(spawnFile);
@@ -77,11 +103,21 @@ public class FileManager {
         }
     }
 
+    //Speichert, die Daten die gesetzt wurden
     public void saveWarpCFG(){
         try {
             warpsCFG.save(warpsFile);
         } catch (IOException e) {
             SurvivalSystem.sendConsoleMsg("&cDatei &5warp.yml &ckonnte nicht gespeichert werden \n Grund: &4" + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void saveHomeCFG(){
+        try {
+            homesCFG.save(homesFile);
+        } catch (IOException e) {
+            SurvivalSystem.sendConsoleMsg("&cDatei &5home.yml &ckonnte nicht gespeichert werden \n Grund: &4" + e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -126,8 +162,32 @@ public class FileManager {
         return false;
     }
 
+    //checkt ob home Datei Existiert
+    public boolean checkHomeFileExists(){
+        if(!homesFile.exists()){
+            SurvivalSystem.getInstance().saveResource("home.yml", false);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    try {
+                        homesFile.createNewFile();
+                        SurvivalSystem.sendConsoleMsg("&6'home.yml' &awurde erstellt");
+                    } catch (IOException e) {
+                        SurvivalSystem.sendConsoleMsg("&6Konnte 'home.yml' &6nicht erstellen, &4\" + e.getMessage()");
+                    }
+                }
+            }.runTaskLater(SurvivalSystem.getInstance(), 20);
+            return false;
+        }
+        return false;
+    }
+
     public boolean warpExists(String warpname) {
         return getWarpsCFG().contains(warpname+".worldname");
+    }
+
+    public boolean homeExists(String playerName, String homeName) {
+        return getHomesCFG().contains(playerName + ".homes." + homeName + ".worldname");
     }
 
     public void deleteWarp(String warpName) {

@@ -1,6 +1,7 @@
 package de.sasnex.survivalSystem.Interfaces;
 
 import de.sasnex.survivalSystem.FileManager.*;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.checkerframework.checker.nullness.qual.NonNull;
