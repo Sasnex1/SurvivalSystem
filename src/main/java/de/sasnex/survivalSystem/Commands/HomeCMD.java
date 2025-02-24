@@ -44,7 +44,7 @@ public class HomeCMD implements ICommand, CommandExecutor {
                                 homesList.append(" &6- &f ").append(home).append("\n");
                             }
 
-                            player.sendMessage(SurvivalSystem.translateChat(SurvivalSystem.getPrefix()+homesList.toString()));
+                            player.sendMessage(SurvivalSystem.translateChat(homesList.toString()));
                         } else {
                             player.sendMessage(SurvivalSystem.translateChat(
                                     SurvivalSystem.getPrefix() + "&cDu hast keine Homes gesetzt."
