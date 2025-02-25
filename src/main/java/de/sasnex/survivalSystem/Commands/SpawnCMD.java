@@ -59,7 +59,7 @@ public class SpawnCMD implements ICommand, CommandExecutor {
                 }
                 player.sendMessage(SurvivalSystem.translateChat(SurvivalSystem.getPrefix()+"&cDu wirst zum Spawn Teleportiert"));
             } else if(args[0].equalsIgnoreCase("set")){
-                if(player.hasPermission("ss.spawnset")){
+                if(player.hasPermission("ss.spawnset") || player.hasPermission("ss.*")){
                     //Setzt die Spawn Location
                     Location loc = player.getLocation();
 

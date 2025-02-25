@@ -43,7 +43,7 @@ public class WarpCMD implements ICommand, CommandExecutor {
 
             if (args.length == 2 && args[0].equalsIgnoreCase("set")) {
                 // Setze einen neuen Warp
-                if (player.hasPermission("ss.setwarp")) {
+                if (player.hasPermission("ss.setwarp")  || player.hasPermission("ss.*")) {
                     String warpname = args[1];
                     Location loc = player.getLocation();
 
@@ -63,7 +63,7 @@ public class WarpCMD implements ICommand, CommandExecutor {
 
             if (args.length == 2 && args[0].equalsIgnoreCase("del")) {
                 // Lösche einen Warp
-                if (player.hasPermission("ss.delwarp")) {
+                if (player.hasPermission("ss.delwarp")  || player.hasPermission("ss.*")) {
                     String warpname = args[1];
                     if (fm.warpExists(warpname)) {
                         fm.deleteWarp(warpname);

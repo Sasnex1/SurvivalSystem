@@ -38,7 +38,6 @@ public final class SurvivalSystem extends JavaPlugin {
         new InvseeCMD();
         new FlyCMD();
         new GamemodeCmd();
-        new MoneyCMD();
     }
 
     void listener(){
