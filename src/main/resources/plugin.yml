@@ -16,3 +16,4 @@ commands:
     description: Setzt den Spieler in den Flugmodus oder einen anderen Spieler
   gm:
     description: Ändert den Gamemode eines Spieler's
+  money:

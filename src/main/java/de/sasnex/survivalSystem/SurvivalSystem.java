@@ -2,6 +2,7 @@ package de.sasnex.survivalSystem;
 
 import de.sasnex.survivalSystem.Commands.*;
 import de.sasnex.survivalSystem.FileManager.FileManager;
+import de.sasnex.survivalSystem.Listeners.BreakBlockListener;
 import de.sasnex.survivalSystem.Listeners.JoinListener;
 import de.sasnex.survivalSystem.Listeners.QuitListener;
 import org.bukkit.Bukkit;
@@ -37,11 +38,13 @@ public final class SurvivalSystem extends JavaPlugin {
         new InvseeCMD();
         new FlyCMD();
         new GamemodeCmd();
+        new MoneyCMD();
     }
 
     void listener(){
         getServer().getPluginManager().registerEvents(new JoinListener(), instance);
         getServer().getPluginManager().registerEvents(new QuitListener(), instance);
+        getServer().getPluginManager().registerEvents(new BreakBlockListener(), instance);
     }
 
     @Override
