@@ -1,8 +1,8 @@
 package de.sasnex.survivalSystem.FileManager;
 
 import de.sasnex.survivalSystem.SurvivalSystem;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -24,6 +24,13 @@ public class FileManager {
     public YamlConfiguration getWarpsCFG() {loadWarpCFG(); return warpsCFG;}
     public YamlConfiguration getHomesCFG() {loadHomeCFG(); return homesCFG;}
 
+    //FOR MSQL
+    private File mysqlfile = new File(path, "/mysql.yml");
+    private FileConfiguration config;
+    private String host;
+    private String database;
+    private String user;
+    private String password;
 
     public void createFolder(){
         if(!path.exists()){
@@ -195,5 +202,71 @@ public class FileManager {
             getWarpsCFG().set(warpName, null);  // Entfernt den Eintrag aus der Konfiguration
             saveWarpCFG();  // Speichert die Änderungen in der Datei
         }
+    }
+
+    //MYSQL
+    private void create() {
+        this.config.set("Host", "localhost");
+        this.config.set("Database", "database");
+        this.config.set("User", "root");
+        this.config.set("Password", "password");
+        this.config.options().copyDefaults(true);
+
+        try {
+            this.config.save(this.mysqlfile);
+        } catch (IOException var2) {
+            var2.printStackTrace();
+        }
+
+    }
+
+    private void load() {
+        this.host = this.config.getString("Host");
+        this.database = this.config.getString("Database");
+        this.user = this.config.getString("User");
+        this.password = this.config.getString("Password");
+    }
+
+    public File getMysqlfile() {
+        return this.mysqlfile;
+    }
+
+    public FileConfiguration getConfig() {
+        return this.config;
+    }
+
+    public String getHost() {
+        return this.host;
+    }
+
+    public String getDatabase() {
+        return this.database;
+    }
+
+    public String getUser() {
+        return this.user;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public boolean checkMysqlFileExists(){
+        if(!mysqlfile.exists()){
+            SurvivalSystem.getInstance().saveResource("mysql.yml", false);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    try {
+                        mysqlfile.createNewFile();
+                        SurvivalSystem.sendConsoleMsg("&6'mysql.yml' &awurde erstellt");
+                    } catch (IOException e) {
+                        SurvivalSystem.sendConsoleMsg("&6Konnte 'mysql.yml' &6nicht erstellen, &4\" + e.getMessage()");
+                    }
+                }
+            }.runTaskLater(SurvivalSystem.getInstance(), 20);
+            return false;
+        }
+        return false;
     }
 }
