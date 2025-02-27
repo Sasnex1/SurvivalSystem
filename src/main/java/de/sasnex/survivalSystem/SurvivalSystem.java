@@ -2,7 +2,7 @@ package de.sasnex.survivalSystem;
 
 import de.sasnex.survivalSystem.Commands.*;
 import de.sasnex.survivalSystem.FileManager.FileManager;
-import de.sasnex.survivalSystem.Listeners.BreakBlockListener;
+import de.sasnex.survivalSystem.Listeners.BlockListener;
 import de.sasnex.survivalSystem.Listeners.JoinListener;
 import de.sasnex.survivalSystem.Listeners.QuitListener;
 import de.sasnex.survivalSystem.Utils.MySQL;
@@ -21,8 +21,7 @@ public final class SurvivalSystem extends JavaPlugin {
         // Plugin startup logic
         instance = this;
         sql = new MySQL();
-
-
+        sql.connect();
 
         sendConsoleMsg("&6SurvivalSystem &aAktiviert");
         sendConsoleMsg("&eMade by Sasnex");
@@ -44,13 +43,13 @@ public final class SurvivalSystem extends JavaPlugin {
         new HomeCMD();
         new InvseeCMD();
         new FlyCMD();
-        new GamemodeCmd();
+        new GamemodeCMD();
     }
 
     void listener(){
         getServer().getPluginManager().registerEvents(new JoinListener(), instance);
         getServer().getPluginManager().registerEvents(new QuitListener(), instance);
-        getServer().getPluginManager().registerEvents(new BreakBlockListener(), instance);
+        getServer().getPluginManager().registerEvents(new BlockListener(), instance);
     }
 
     @Override
