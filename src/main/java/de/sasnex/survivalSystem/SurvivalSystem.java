@@ -21,7 +21,6 @@ public final class SurvivalSystem extends JavaPlugin {
         // Plugin startup logic
         instance = this;
         sql = new MySQL();
-        sql.connect();
 
         sendConsoleMsg("&6SurvivalSystem &aAktiviert");
         sendConsoleMsg("&eMade by Sasnex");
@@ -32,6 +31,8 @@ public final class SurvivalSystem extends JavaPlugin {
         fileManager.checkSpawnFileExists();
         fileManager.checkWarpFileExists();
         fileManager.checkHomeFileExists();
+
+        sql.connect();
 
         listener();
         commands();
