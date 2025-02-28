@@ -5,7 +5,7 @@ import de.sasnex.survivalSystem.FileManager.FileManager;
 import de.sasnex.survivalSystem.Listeners.BlockListener;
 import de.sasnex.survivalSystem.Listeners.JoinListener;
 import de.sasnex.survivalSystem.Listeners.QuitListener;
-import de.sasnex.survivalSystem.Utils.MySQL;
+import de.sasnex.survivalSystem.Others.MySQL;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,7 +20,6 @@ public final class SurvivalSystem extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         instance = this;
-        sql = new MySQL();
 
         sendConsoleMsg("&6SurvivalSystem &aAktiviert");
         sendConsoleMsg("&eMade by Sasnex");
@@ -32,7 +31,7 @@ public final class SurvivalSystem extends JavaPlugin {
         fileManager.checkWarpFileExists();
         fileManager.checkHomeFileExists();
 
-        sql.connect();
+        sql = new MySQL();
 
         listener();
         commands();
